@@ -3,10 +3,11 @@ use std::thread;
 use std::{fmt::Display, sync::Arc};
 
 use crate::check_hash::fast_check_hash;
+use crate::find_counter::FoundCounter;
 use crate::hash::Hash;
 use crate::number_iterator::NumberIterator;
-use crate::print_count::PrintCount;
 
+/// Container for founded hash
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct FoundHash {
     pub number: u128,
@@ -21,12 +22,16 @@ impl Display for FoundHash {
 
 impl From<u128> for FoundHash {
     fn from(value: u128) -> Self {
-        FoundHash { number: value, hash: Hash::from(value) }
+        FoundHash {
+            number: value,
+            hash: Hash::from(value),
+        }
     }
 }
 
+/// Function for search hashes
 pub fn find_hashes(number: u8, find: u64) -> Vec<FoundHash> {
-    let print_count = Arc::new(PrintCount::new(find));
+    let print_count = Arc::new(FoundCounter::new(find));
     let result_hash_vec = Arc::new(Mutex::new(Vec::new()));
 
     let mut workers = vec![];
@@ -41,7 +46,7 @@ pub fn find_hashes(number: u8, find: u64) -> Vec<FoundHash> {
             let mut number_iter = NumberIterator::new(cpu_index as u128, cpu_count);
 
             loop {
-                if !print_count_clon.is_avalible() {
+                if !print_count_clon.is_available() {
                     break;
                 }
 
@@ -76,10 +81,8 @@ pub fn find_hashes(number: u8, find: u64) -> Vec<FoundHash> {
     }
 
     let mutex = Arc::try_unwrap(result_hash_vec).unwrap();
-    return mutex.into_inner().unwrap();
+    mutex.into_inner().unwrap()
 }
-
-
 
 #[test]
 fn find_hashes_test() {

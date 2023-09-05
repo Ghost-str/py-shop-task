@@ -10,6 +10,7 @@ use sha2::{
 };
 use std::{fmt::Display, ops::Index};
 
+/// Wrapper over Sha256 hash library algorithm
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Hash(
     GenericArray<u8, UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>>,

@@ -1,12 +1,13 @@
 use clap::Parser;
 
+/// A program for finding numbers whose hash ends with a certain number of characters '0'
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 pub struct Args {
-    // Count '0' simbols from end
+    /// Count '0' symbols from end
     #[arg(short = 'N', long)]
     pub number: u8,
-    // Count search heshes
+    /// Count search hashes
     #[arg(short = 'F', long)]
     pub find: u64,
 }

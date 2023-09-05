@@ -1,3 +1,5 @@
+
+/// Iterator for get next value for hash check
 pub struct NumberIterator {
     value: u128,
     shift: u128,

@@ -1,8 +1,8 @@
 mod check_hash;
+mod find_counter;
 mod find_hashes;
 mod hash;
 mod number_iterator;
-mod print_count;
 mod read_args;
 
 use find_hashes::find_hashes;
