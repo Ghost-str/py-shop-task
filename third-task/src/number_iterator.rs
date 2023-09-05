@@ -4,9 +4,9 @@ pub struct NumberIterator {
 }
 
 impl NumberIterator {
-    pub fn new(shift: usize) -> NumberIterator {
+    pub fn new(start_value: u128, shift: usize) -> NumberIterator {
         NumberIterator {
-            value: 0,
+            value: start_value,
             shift: shift as u128,
         }
     }
