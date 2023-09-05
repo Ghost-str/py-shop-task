@@ -1,0 +1,20 @@
+[package]
+name = "third-task"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.4.2", features = ["derive"] }
+lazy_static = "1.4.0"
+num_cpus = "1.16.0"
+regex = "1.9.4"
+sha2 = "0.10.7"
+
+
+[profile.release]
+codegen-units = 1
+lto = true
+debuginfo-level = 1
+debug = 1
